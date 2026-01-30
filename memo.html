@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>住宅ローン控除入力メモ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @media print {
+            .no-print { display: none; }
+            body { background-color: white; }
+            .container { width: 100%; max-width: none; margin: 0; padding: 0; }
+            input[type="text"], input[type="number"], select { border: none; border-bottom: 1px solid #ccc; }
+            input[type="checkbox"] { accent-color: black; }
+        }
+        input::placeholder { font-size: 0.8rem; color: #9ca3af; }
+    </style>
+</head>
+<body class="bg-gray-50 py-10 text-gray-800">
+
+    <div class="container mx-auto max-w-5xl bg-white p-8 shadow-lg rounded-lg border-t-4 border-emerald-600">
+        <header class="flex justify-between items-center mb-6 border-b pb-4">
+            <h1 class="text-2xl font-bold text-emerald-700">◎ 住宅ローン控除入力メモ</h1>
+            <button onclick="window.print()" class="no-print bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-2 rounded-full font-bold shadow transition flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7"></path><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+                PDFとして保存（印刷）
+            </button>
+        </header>
+
+        <div class="overflow-x-auto">
+            <table class="w-full border-collapse border border-gray-300 text-sm">
+                <thead>
+                    <tr class="bg-emerald-100 text-emerald-900">
+                        <th class="border border-gray-300 p-2 w-12 text-center">No</th>
+                        <th class="border border-gray-300 p-2 w-48 text-center">要件項目</th>
+                        <th class="border border-gray-300 p-2 text-center">住宅に関する事項</th>
+                        <th class="border border-gray-300 p-2 text-center">土地に関する事項</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- 1. 居住開始年月日 -->
+                    <tr>
+                        <td class="border border-gray-300 p-2 text-center bg-gray-50">1</td>
+                        <td class="border border-gray-300 p-2 font-semibold">居住開始年月日</td>
+                        <td class="border border-gray-300 p-2">
+                            <div class="flex items-center gap-2">
+                                令和 <input type="text" class="w-12 border rounded px-1 text-center" value="7"> 年 
+                                <input type="text" class="w-10 border rounded px-1 text-center"> 月 
+                                <input type="text" class="w-10 border rounded px-1 text-center"> 日
+                            </div>
+                            <p class="text-xs text-red-500 mt-1">※新築等又は購入した日から６か月以内に入居が必要</p>
+                        </td>
+                        <td class="border border-gray-300 p-2 bg-gray-50 italic text-gray-400 text-center">（住宅側に記載）</td>
+                    </tr>
+                    <!-- 2. 契約日 -->
+                    <tr>
+                        <td class="border border-gray-300 p-2 text-center bg-gray-50">2</td>
+                        <td class="border border-gray-300 p-2 font-semibold">契約日</td>
+                        <td class="border border-gray-300 p-2">
+                            <div class="flex items-center gap-2">
+                                令和 <input type="text" class="w-12 border rounded px-1 text-center"> 年 
+                                <input type="text" class="w-10 border rounded px-1 text-center"> 月 
+                                <input type="text" class="w-10 border rounded px-1 text-center"> 日
+                            </div>
+                        </td>
+                        <td class="border border-gray-300 p-2">
+                            <div class="flex items-center gap-2">
+                                令和 <input type="text" class="w-12 border rounded px-1 text-center"> 年 
+                                <input type="text" class="w-10 border rounded px-1 text-center"> 月 
+                                <input type="text" class="w-10 border rounded px-1 text-center"> 日
+                            </div>
+                            <p class="text-xs text-gray-500 mt-1">※住宅を新築する前に土地を購入した場合に記載</p>
+                        </td>
+                    </tr>
+                    <!-- 3. 契約区分 -->
+                    <tr>
+                        <td class="border border-gray-300 p-2 text-center bg-gray-50">3</td>
+                        <td class="border border-gray-300 p-2 font-semibold">契約区分 <span class="text-xs font-normal">(住宅の区分)</span></td>
+                        <td class="border border-gray-300 p-2">
+                            <div class="flex flex-wrap gap-4">
+                                <label class="flex items-center gap-1"><input type="checkbox"> 新築等</label>
+                                <label class="flex items-center gap-1"><input type="checkbox"> 買取再販</label>
+                                <label class="flex items-center gap-1"><input type="checkbox"> 中古</label>
+                            </div>
+                        </td>
+                        <td class="border border-gray-300 p-2">
+                            <div class="flex flex-col gap-1">
+                                <label class="flex items-center gap-1"><input type="checkbox"> 土地付きの新築住宅の購入</label>
+                                <label class="flex items-center gap-1"><input type="checkbox"> 借入金等により購入した後に住宅を新築</label>
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- 4. 取得対価の額 -->
+                    <tr>
+                        <td class="border border-gray-300 p-2 text-center bg-gray-50">4</td>
+                        <td class="border border-gray-300 p-2 font-semibold">取得対価の額<br><span class="text-xs font-normal">(消費税額込)</span></td>
+                        <td class="border border-gray-300 p-2">
+                            <div class="flex items-center justify-end gap-1">
+                                <input type="text" class="w-full max-w-xs border rounded px-2 text-right" placeholder="00,000,000"> 円
+                            </div>
+                            <p class="text-xs text-gray-500 mt-1 italic">※「取得価額」と「消費税・地方消費税額」が区分し記載されている場合は、合計して記載</p>
+                        </td>
+                        <td class="border border-gray-300 p-2">
+                            <div class="flex items-center justify-end gap-1">
+                                <input type="text" class="w-full max-w-xs border rounded px-2 text-right" placeholder="00,000,000"> 円
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- 5. 補助金等 -->
+                    <tr>
+                        <td class="border border-gray-300 p-2 text-center bg-gray-50">5</td>
+                        <td class="border border-gray-300 p-2 font-semibold">交付を受ける補助金等の額</td>
+                        <td class="border border-gray-300 p-2">
+                            <div class="flex items-center gap-4">
+                                <label class="flex items-center gap-1"><input type="checkbox"> 有</label>
+                                <label class="flex items-center gap-1"><input type="checkbox"> 無</label>
+                                <input type="text" class="flex-1 border rounded px-2 text-right" placeholder="0"> 円
+                            </div>
+                        </td>
+                        <td class="border border-gray-300 p-2">
+                            <div class="flex items-center gap-4">
+                                <label class="flex items-center gap-1"><input type="checkbox"> 有</label>
+                                <label class="flex items-center gap-1"><input type="checkbox"> 無</label>
+                                <input type="text" class="flex-1 border rounded px-2 text-right" placeholder="0"> 円
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- 6. 面積 -->
+                    <tr>
+                        <td class="border border-gray-300 p-2 text-center bg-gray-50" rowspan="2">6</td>
+                        <td class="border border-gray-300 p-2 font-semibold">総(床)面積</td>
+                        <td class="border border-gray-300 p-2">
+                            <div class="flex items-center justify-end gap-1">
+                                <input type="text" class="w-32 border rounded px-2 text-right"> ㎡ <span class="text-xs">(小数点2位まで)</span>
+                            </div>
+                        </td>
+                        <td class="border border-gray-300 p-2">
+                            <div class="flex items-center justify-end gap-1">
+                                <input type="text" class="w-32 border rounded px-2 text-right"> ㎡ <span class="text-xs">(小数点2位まで)</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="border border-gray-300 p-2 font-semibold bg-gray-50">マンションの場合</td>
+                        <td class="border border-gray-300 p-2">
+                            <div class="flex items-center justify-between gap-1">
+                                <span class="text-xs">自己の専有部分の床面積</span>
+                                <div><input type="text" class="w-24 border rounded px-2 text-right"> ㎡</div>
+                            </div>
+                        </td>
+                        <td class="border border-gray-300 p-2">
+                            <div class="flex flex-col gap-1 text-xs">
+                                <div class="flex justify-between items-center">
+                                    <span>１棟の土地の面積</span>
+                                    <div><input type="text" class="w-24 border rounded px-2 text-right"> ㎡</div>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span>１棟の住宅の総床面積</span>
+                                    <div><input type="text" class="w-24 border rounded px-2 text-right"> ㎡</div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- 7. 不動産番号 -->
+                    <tr>
+                        <td class="border border-gray-300 p-2 text-center bg-gray-50">7</td>
+                        <td class="border border-gray-300 p-2 font-semibold">不動産番号</td>
+                        <td class="border border-gray-300 p-2" colspan="2">
+                            <input type="text" class="w-full border rounded px-2" placeholder="登記事項証明書等に記載の番号">
+                        </td>
+                    </tr>
+                    <!-- 8. 持分 -->
+                    <tr>
+                        <td class="border border-gray-300 p-2 text-center bg-gray-50">8</td>
+                        <td class="border border-gray-300 p-2 font-semibold">《共有名義の場合》<br>自己の持分</td>
+                        <td class="border border-gray-300 p-2">
+                            <div class="flex items-center gap-1 justify-center">
+                                <input type="text" class="w-16 border rounded text-center"> / <input type="text" class="w-16 border rounded text-center">
+                            </div>
+                            <p class="text-xs text-gray-500 mt-1 text-center italic">※家屋の登記事項証明書から記載</p>
+                        </td>
+                        <td class="border border-gray-300 p-2">
+                            <div class="flex items-center gap-1 justify-center">
+                                <input type="text" class="w-16 border rounded text-center"> / <input type="text" class="w-16 border rounded text-center">
+                            </div>
+                            <p class="text-xs text-gray-500 mt-1 text-center italic">※土地の登記事項証明書から記載</p>
+                        </td>
+                    </tr>
+                    <!-- 9. 贈与の特例 -->
+                    <tr>
+                        <td class="border border-gray-300 p-2 text-center bg-gray-50">9</td>
+                        <td class="border border-gray-300 p-2 font-semibold">住宅取得資金等の贈与の特例を受けた金額等</td>
+                        <td class="border border-gray-300 p-2">
+                            <div class="flex items-center gap-4">
+                                <label class="flex items-center gap-1"><input type="checkbox"> 有</label>
+                                <label class="flex items-center gap-1"><input type="checkbox"> 無</label>
+                                <input type="text" class="flex-1 border rounded px-2 text-right" placeholder="0"> 円
+                            </div>
+                        </td>
+                        <td class="border border-gray-300 p-2">
+                            <div class="flex items-center gap-4">
+                                <label class="flex items-center gap-1"><input type="checkbox"> 有</label>
+                                <label class="flex items-center gap-1"><input type="checkbox"> 無</label>
+                                <input type="text" class="flex-1 border rounded px-2 text-right" placeholder="0"> 円
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- 10. 借入金内訳 -->
+                    <tr>
+                        <td class="border border-gray-300 p-2 text-center bg-gray-50" rowspan="4">10</td>
+                        <td class="border border-gray-300 p-2 font-semibold">住宅借入金等の内訳</td>
+                        <td class="border border-gray-300 p-2">
+                            <div class="flex gap-4 justify-center">
+                                <label class="flex items-center gap-1"><input type="checkbox"> 住宅のみ</label>
+                                <label class="flex items-center gap-1"><input type="checkbox"> 住宅及び土地等</label>
+                            </div>
+                        </td>
+                        <td class="border border-gray-300 p-2">
+                            <div class="flex justify-center">
+                                <label class="flex items-center gap-1"><input type="checkbox"> 土地等のみ</label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="border border-gray-300 p-2 text-center bg-gray-50 italic">同　当初金額</td>
+                        <td class="border border-gray-300 p-2">
+                            <div class="flex items-center justify-end gap-1">
+                                <input type="text" class="w-full border rounded px-2 text-right" placeholder="0"> 円
+                            </div>
+                        </td>
+                        <td class="border border-gray-300 p-2">
+                            <div class="flex items-center justify-end gap-1">
+                                <input type="text" class="w-full border rounded px-2 text-right" placeholder="0"> 円
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="border border-gray-300 p-2 text-center bg-gray-50 italic">同　年末残高</td>
+                        <td class="border border-gray-300 p-2">
+                            <div class="flex items-center justify-end gap-1 font-bold text-blue-700">
+                                <input type="text" class="w-full border rounded px-2 text-right bg-blue-50" placeholder="0"> 円
+                            </div>
+                        </td>
+                        <td class="border border-gray-300 p-2">
+                            <div class="flex items-center justify-end gap-1 font-bold text-blue-700">
+                                <input type="text" class="w-full border rounded px-2 text-right bg-blue-50" placeholder="0"> 円
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="border border-gray-300 p-2 text-center bg-gray-50 italic">同　連帯債務<br>自己資金の額</td>
+                        <td class="border border-gray-300 p-2">
+                            <div class="flex items-center gap-4">
+                                <div class="flex flex-col text-xs gap-1">
+                                    <label class="flex items-center gap-1"><input type="checkbox"> 有</label>
+                                    <label class="flex items-center gap-1"><input type="checkbox"> 無</label>
+                                </div>
+                                <input type="text" class="flex-1 border rounded px-2 text-right" placeholder="0"> 円
+                            </div>
+                        </td>
+                        <td class="border border-gray-300 p-2">
+                            <div class="flex items-center gap-4">
+                                <div class="flex flex-col text-xs gap-1">
+                                    <label class="flex items-center gap-1"><input type="checkbox"> 有</label>
+                                    <label class="flex items-center gap-1"><input type="checkbox"> 無</label>
+                                </div>
+                                <input type="text" class="flex-1 border rounded px-2 text-right" placeholder="0"> 円
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <footer class="mt-8 pt-6 border-t border-gray-200 no-print text-center">
+            <p class="text-sm text-gray-500 mb-4 italic">このメモは確定申告等で「住宅借入金等特別控除」の入力をスムーズにするためのものです。</p>
+            <div class="flex justify-center gap-4">
+                 <button onclick="window.print()" class="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-3 rounded font-bold shadow-lg transition">
+                    入力を完了してPDF保存
+                </button>
+                <button onclick="location.reload()" class="border border-gray-300 text-gray-500 px-6 py-3 rounded font-bold hover:bg-gray-50 transition">
+                    リセット
+                </button>
+            </div>
+        </footer>
+    </div>
+
+</body>
+</html>
